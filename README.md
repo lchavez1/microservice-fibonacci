@@ -10,3 +10,6 @@ Cuenta con dos end point solicitados:
 *Se incluye el contrato de interfaz generado en Swagger.*
 
 Por ultimo se agrego un front-end super simple que permite hacer peticiones (consumir) al end point de fibonacci.
+
+Para poder ejecutar el proyecto hay que ejecturar el framework spring boot, uilizando mvn.
+No requiere de ninguna instancia de bases de datos ya que el proyecto almacena la informacion de manera local en un archivo JSON.
