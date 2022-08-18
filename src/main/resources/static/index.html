@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consumir servicio REST</title>
+    <script>
+        async function random() {
+            var min = 0;
+            var max = 30;
+            var rnd = Math.floor((Math.random() * (max - min + 1)) + min);
+            document.getElementById("txtN").innerHTML = "n: " + rnd;
+            
+            document.getElementById("txtSucesion").innerHTML = "Sucesion: " + await fibo(rnd);
+        }
+        function getHeaders() {
+            return {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+        }
+        }
+
+        async function fibo(n) {
+            const request = await fetch('http://localhost:8080/fibo/' + n, {
+                method: 'GET',
+                headers: getHeaders(),
+            });
+
+            const sucesion = await request.json();
+            console.log(sucesion.s);
+
+            return sucesion.s;
+        }
+    </script>
+</head>
+<body>
+
+    <h1>Da clic en el boton para enviar un numero aleatorio y consumir el servicio Fibo</h1>
+    <h2 id="txtN">n: -</h2>
+    <button onclick="random()">Calcular sucesion Fibonacci</button>
+    <h2 id="txtSucesion">Sucesion:</h2>
+
+    <h4>Elaborado por Luis Fernando Chavez Santacruz para prueba tecnica Grupo Salinas. (No quise meter estilo en el front ya que no lo crei necesario).</h4>
+    
+</body>
+</html>

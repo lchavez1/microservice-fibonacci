@@ -1,0 +1,44 @@
+openapi: 3.0.1
+info:
+  title: FIBO API.
+  description: Esta API calcula y devuelve la secesion FIbonacci, ademas de llevar un registro de las peticiones que se realizaron de manera correcta.
+  version: 1.0.0
+servers:
+- url: http://localhost:8080/fibo
+tags:
+- name: fibo
+  description: Calcula y devuelve la sucesion Fibonnaci. | Control de las peticiones realizadas correctamente.
+
+paths:
+
+  /{n}:
+    get:
+      tags:
+      - fibo
+      summary: Obtiene la sucesion Fibonacci.
+      parameters:
+      - name: n
+        in: path
+        description: Limite de la sucesion.
+        required: true
+        schema:
+          type: string
+        
+      responses:
+        200:
+          description: si el numero es entero mayor o igual a 0 [0, 1, 1, 2 ...] // si el    numero es negativo [Error [número negativo].]. // si el parametro es una cadena  [Error [se ingreso un valor incorrecto, verifique sus parametros].]
+    delete:
+      tags:
+      - fibo
+      summary: Elimina el registro en el archivo JSON para n.
+      parameters:
+      - name: n
+        in: path
+        description: Limite de la sucesiona eliminar.
+        required: true
+        schema:
+          type: string
+        
+      responses:
+        200:
+          description: si el valor de n se encontro en el archivo [Eliminado con exito] // si el valor no se encontro o no se recibio un parametro valido [No se encontro ningun registro para ese numero].
